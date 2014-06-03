@@ -55,7 +55,8 @@ describe("TicTac Test Suite", function() {
         cities.add({"id":2,"name":"Wellington","score":9});
         cities.add({"id":3,"name":"Manila","score":8});
         cities.add({"id":4,"name":"New York","score":10});
-        expect(cities.size()).toBe(4);
+        cities.add({"id":5,"name":"London","score":null});
+        expect(cities.size()).toBe(5);
     });
 
     it("retrieves individual objects based on numeric keys", function() {
@@ -69,15 +70,21 @@ describe("TicTac Test Suite", function() {
         var result = cities.find("score",8);
         expect(result.length).toBe(2);
         expect(result[1].score).toBe(8);
+        result = cities.find("score",null);
+        expect(result.length).toBe(1);
     });
 
     it("removes objects based on a numerical key", function(){
         expect(cities.remove(3).name).toBe("Manila");
-        expect(cities.size()).toBe(3);
+        expect(cities.size()).toBe(4);
         var result = cities.find("score",8);
         expect(result.length).toBe(1);
         expect(result[0].score).toBe(8);
-
     })
+
+    it("clears the repo", function() {
+       cities.clearAll();
+        expect(cities.size()).toBe(0);
+    });
 
 });

@@ -87,6 +87,11 @@
         this.size = function() {
             return _.keys(reverseMap).length;
         }
+
+        this.clearAll = function() {
+            map = {};
+            reverseMap = {};
+        }
     }
 
     function Repo() {
@@ -128,6 +133,14 @@
             _.forEach(_.keys(indexes),
                 function(indexKey){
                     indexes[indexKey].put(object[keyProperty],object[indexKey])
+                });
+        }
+
+        this.clearAll =function() {
+            objects = {};
+            _.forEach(_.keys(indexes),
+                function(indexKey){
+                    indexes[indexKey].clearAll();
                 });
         }
 
